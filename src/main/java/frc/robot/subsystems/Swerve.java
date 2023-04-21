@@ -1,5 +1,9 @@
 package frc.robot.subsystems;
 
+/*Class that handles all of the swerve vectore math 
+to point the wheels in the correct direction
+ * 
+ */
 //import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -25,7 +29,7 @@ public class Swerve extends SubsystemBase {
   //private final CAN gyro= new CAN(1, 8, 4);
   //private final CANData gyroData = new CANData();
 
-  private SwerveDriveOdometry swerveOdometry;
+  private SwerveDriveOdometry swerveOdometry;   //Odometry class helps track where the robot is relative to where it started
   private SwerveModule[] mSwerveMods;
   public static final SPI.Port kGyroPort = SPI.Port.kOnboardCS0;
   public ADXRS450_Gyro m_gyro = new ADXRS450_Gyro(kGyroPort);
