@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.CAN;
 import edu.wpi.first.hal.CANData;
 import frc.robot.subsystems.TagVisionSubsystem;
 import frc.robot.util.Gamepad;
-
+import frc.robot.Auto.*;
 import java.util.concurrent.TimeUnit;
 
 /*
@@ -122,7 +122,8 @@ public class RobotContainer {
     //}
 
     public Command getAutonomousCommand() {
-        if(autoStateMachine != 1001) System.out.println(autoStateMachine);
+        return new boxandturn(this);}
+        /*if(autoStateMachine != 1001) System.out.println(autoStateMachine);
         return new RunCommand(() -> {
             if (autoStateMachine == 0) {
                 System.out.println("auto0");
@@ -186,7 +187,8 @@ public class RobotContainer {
                 //strafeDrive.m_frontRight.turningMotor.set(TalonSRXControlMode.Position,  strafeDrive.m_frontLeft.unitConv(45.0));
                 //strafeDrive.m_rearLeft.turningMotor.set(TalonSRXControlMode.Position,  strafeDrive.m_frontLeft.unitConv(-135.0));
                 //strafeDrive.m_rearRight.turningMotor.set(TalonSRXControlMode.Position,  strafeDrive.m_frontLeft.unitConv(-45.0));
-            }
+            //}
+            /* 
             else if (autoStateMachine == 4){
                // strafeDrive.moreDrive(0, -1, 0);
                 armControl.setArm(0,0,.15);
@@ -231,8 +233,8 @@ public class RobotContainer {
                 //strafeDrive.moreDrive(0, 0, 0);
                 autoStateMachine = 400;
             }
-        });
-    }
+        });}*/
+
 
     /*public void canTest() {
         //System.out.println(gyrotest.readNext());
