@@ -30,26 +30,26 @@ public class Swerve extends SubsystemBase {
   //private final CANData gyroData = new CANData();
 
   private SwerveDriveOdometry swerveOdometry;   //Odometry class helps track where the robot is relative to where it started
-  private SwerveModule[] mSwerveMods;
-  public static final SPI.Port kGyroPort = SPI.Port.kOnboardCS0;
-  public ADXRS450_Gyro m_gyro = new ADXRS450_Gyro(kGyroPort);
+  private SwerveModule[] mSwerveMods;           //Array of the 4 swerve modules
+  public static final SPI.Port kGyroPort = SPI.Port.kOnboardCS0;      //Current Gyro likely to be phased out
+  public ADXRS450_Gyro m_gyro = new ADXRS450_Gyro(kGyroPort);         //plug in AD gyro
   private Field2d field;
 
   public Swerve() {
-    // gyro = new ADIS16470_IMU();
-   // gyro = new AHRS();
-    // gyro.configFactoryDefault();
-    //zeroGyro();
-    m_gyro.calibrate();
+
+    m_gyro.calibrate(); 
     mSwerveMods =
         new SwerveModule[] {
-          new SwerveModule(0, Constants.Swerve.Mod0.constants),
+          new SwerveModule(0, Constants.Swerve.Mod0.constants), //Each Constant set is specific to a motor pair
           new SwerveModule(1, Constants.Swerve.Mod1.constants),
           new SwerveModule(2, Constants.Swerve.Mod2.constants),
           new SwerveModule(3, Constants.Swerve.Mod3.constants)
         };
+        
     swerveOdometry =
-        new SwerveDriveOdometry(Constants.Swerve.swerveKinematics, getYaw(), getPositions());
+        new SwerveDriveOdometry(Constants.Swerve.swerveKinematics, getYaw(), getPositions()); 
+      
+        //Odomentry with our kinematics object from constants, gyro position and x/y position of each module
 
     field = new Field2d();
     SmartDashboard.putData("Field", field);
